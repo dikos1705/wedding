@@ -7,7 +7,7 @@
   --gold: #9b8b55;
   --rose: #9d4545;
   --shadow: 0 24px 80px rgba(20, 18, 15, 0.14);
-  --script: "Great Vibes", cursive;
+  --script: "Great Vibes", "Cormorant Garamond", Georgia, serif;
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Montserrat", Arial, sans-serif;
 }
@@ -180,9 +180,10 @@ input {
 .hosts h2,
 .survey h2 {
   margin: 0;
-  font-family: var(--script);
-  font-size: 48px;
-  font-weight: 400;
+  font-family: var(--serif);
+  font-size: 44px;
+  font-style: italic;
+  font-weight: 500;
   line-height: 1.1;
 }
 
@@ -690,7 +691,7 @@ input {
   .countdown-section h2,
   .hosts h2,
   .survey h2 {
-    font-size: 43px;
+    font-size: 40px;
   }
 
   .couple-script {
