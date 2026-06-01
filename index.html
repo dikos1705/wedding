@@ -164,24 +164,29 @@
     <section class="survey section-white">
       <div class="corner-flower corner-flower-right"></div>
       <h2>Сауалнама:</h2>
-      <form class="survey-form" id="surveyForm" novalidate>
+      <form class="survey-form" id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdBBvj2R1w2zf6xhmqTmRFFW37lEXne-JY3kcBAWRV18L1wSg/formResponse" method="POST" target="googleFormTarget" novalidate>
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="pageHistory" value="0">
+        <input type="hidden" name="fbzx" value="-6835175453678866091">
+        <input type="hidden" name="submissionTimestamp" value="-1">
+
         <label class="form-field">
           <span>Аты-жөніңіз</span>
-          <input type="text" name="guestName" placeholder="Есіміңіз" autocomplete="name" required>
+          <input type="text" name="entry.1115765674" placeholder="Есіміңіз" autocomplete="name" required>
         </label>
 
         <fieldset>
           <legend>Тойға келесіз бе?</legend>
           <label class="radio-item">
-            <input type="radio" name="attendance" value="Келемін" required>
+            <input type="radio" name="entry.2018536969" value="- Келемін" required>
             <span>Келемін</span>
           </label>
           <label class="radio-item">
-            <input type="radio" name="attendance" value="Жұбыммен келемін">
+            <input type="radio" name="entry.2018536969" value="- Жұбыммен келемін">
             <span>Жұбыммен келемін</span>
           </label>
           <label class="radio-item">
-            <input type="radio" name="attendance" value="Өкінішке орай қатыса алмаймын">
+            <input type="radio" name="entry.2018536969" value="- Өкінішке орай қатыса алмаймын">
             <span>Өкінішке орай қатыса алмаймын</span>
           </label>
         </fieldset>
@@ -189,6 +194,7 @@
         <button type="submit" class="submit-btn">Жіберу</button>
         <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
       </form>
+      <iframe class="hidden-iframe" name="googleFormTarget" title="Google Form response target"></iframe>
     </section>
 
     <footer class="final-message">

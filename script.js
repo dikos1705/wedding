@@ -1,4 +1,4 @@
-const weddingDate = new Date("2026-08-22T19:00:00+05:00");
+const weddingDate = new Date("2026-08-22T18:00:00+05:00");
 
 function updateCountdown() {
   const now = new Date();
@@ -99,24 +99,33 @@ musicControl?.addEventListener("click", async (event) => {
 
 const surveyForm = document.getElementById("surveyForm");
 const formNote = document.getElementById("formNote");
+const submitButton = surveyForm?.querySelector(".submit-btn");
+const guestNameInput = surveyForm?.querySelector('input[name="entry.1115765674"]');
+const attendanceInputs = surveyForm
+  ? Array.from(surveyForm.querySelectorAll('input[name="entry.2018536969"]'))
+  : [];
 
 surveyForm?.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const data = new FormData(surveyForm);
-  const name = data.get("guestName")?.toString().trim();
-  const attendance = data.get("attendance")?.toString();
+  const name = guestNameInput?.value.trim();
+  const hasAttendance = attendanceInputs.some((input) => input.checked);
 
-  if (!name || !attendance) {
+  if (!name || !hasAttendance) {
     if (formNote) formNote.textContent = "Өтініш, аты-жөніңізді жазып, жауап таңдаңыз.";
     return;
   }
 
-  if (formNote) {
-    formNote.textContent = "Жауабыңыз қабылданды. Рақмет!";
-  }
+  if (formNote) formNote.textContent = "Жауабыңыз жіберіліп жатыр...";
+  if (submitButton) submitButton.disabled = true;
 
-  surveyForm.reset();
+  surveyForm.submit();
+
+  window.setTimeout(() => {
+    if (formNote) formNote.textContent = "Жауабыңыз Google Forms-қа жіберілді. Рақмет!";
+    surveyForm.reset();
+    if (submitButton) submitButton.disabled = false;
+  }, 900);
 });
 
 setMusicState(false);
