@@ -59,7 +59,7 @@ document.addEventListener("scroll", startMusic, { once: true });
 
 const musicControl = document.getElementById("musicControl");
 const musicIcon = musicControl?.querySelector(".music-icon");
-const musicLabel = musicControl?.querySelector(".music-label strong");
+const musicLabel = musicControl?.querySelector(".music-label");
 
 function setMusicState(isPlaying) {
   if (!musicControl) return;
