@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1a1a1a">
+  <meta name="theme-color" content="#ffffff">
   <title>Санжар & Айзат — Үйлену тойына шақыру</title>
-  <meta name="description" content="Санжар мен Айзаттың үйлену тойына шақыру. Қызылорда қаласы, Абылай Айдосов көшесі, 42а.">
+  <meta name="description" content="Санжар мен Айзаттың үйлену тойына шақыру. 22 тамыз 2026 жыл, Қызылорда қаласы, DoubleBB.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Lora:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Marck+Script&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,177 +16,184 @@
     <source src="assets/music/aygyt-aq-koilek.mp3" type="audio/mpeg">
   </audio>
 
-  <button class="music-btn" id="musicControl" aria-label="Музыка ойнату">
+  <button class="music-btn" id="musicControl" type="button" aria-label="Музыка ойнату" aria-pressed="false">
     <span class="music-icon">▶</span>
     <span class="music-label">Музыка</span>
   </button>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-location">
-          <p>DoubleBB</p>
-          <p>Қызылорда қаласы,</p>
-          <p>Абылай Айдосов көшесі, 42а</p>
-        </div>
+  <main class="invite-shell">
+    <section class="opening section-white">
+      <div class="photo-frame photo-frame-top">
+        <img src="assets/gallery/54.png.webp" alt="Үйлену тойы">
+      </div>
 
-        <h1 class="hero-title">
-          <span>Санжар</span>
-          <span class="ampersand">&</span>
-          <span>Айзат</span>
-        </h1>
+      <div class="title-card reveal">
+        <h1>Санжар &amp; Айзат</h1>
+        <p>22/08/2026</p>
+      </div>
 
-        <p class="hero-subtitle">сіздерді ұлымыз бен келініміз</p>
-
-        <h2 class="hero-text">
-          үйлену тойына<br>
-          арналған салтанатты<br>
-          ақ дастарханымыздың<br>
-          қадірлі қонағы<br>
-          болуға шақырамыз!
-        </h2>
-
-        <p class="hero-greeting">
-          ағайын-туыс, бауырлар,<br>
-          құда-жекжат, нағашы- жиен,<br>
-          бөлелер, дос-жаран,<br>
-          әріптестер, көршілер!
-        </p>
+      <div class="photo-frame photo-frame-tall">
+        <img src="assets/gallery/55.png.webp" alt="Күйеу жігіт пен қалыңдық">
       </div>
     </section>
 
-    <!-- SURVEY SECTION -->
-    <section class="survey">
-      <div class="container">
-        <h3 class="section-title">Сауалнама</h3>
-
-        <form class="survey-form" id="guestForm">
-          <div class="form-group">
-            <label class="form-label">Аты-жөніңіз (жұбыңызбен келетін болсаңыз, есімін бірге жазуыңызды сұраймыз)</label>
-            <input type="text" name="name" placeholder="Есіміңіз" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Тойға келесіз бе?</label>
-            <div class="radio-options">
-              <label class="radio-item">
-                <input type="radio" name="attendance" value="Келемін" required>
-                <span>Келемін</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="attendance" value="Жұбыммен келемін">
-                <span>Жұбыммен келемін</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="attendance" value="Өкінішке орай қатыса алмаймын">
-                <span>Өкінішке орай қатыса алмаймын</span>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="submit-btn">Жіберу</button>
-          <div class="form-status" id="formStatus"></div>
-        </form>
-      </div>
+    <section class="intro section-white reveal">
+      <div class="corner-flower corner-flower-left"></div>
+      <h2>Құрметті</h2>
+      <p class="guest-list">
+        ағайын-туыс, бауырлар,<br>
+        құда-жекжат, нағашы-жиен,<br>
+        бөлелер, дос-жаран,<br>
+        әріптестер, көршілер!
+      </p>
+      <p class="intro-small">Сіздерді ұлымыз бен келініміз</p>
+      <p class="couple-script">
+        Санжар<br>
+        <span>&amp;</span><br>
+        Айзат
+      </p>
+      <p class="invite-text">
+        үйлену тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!
+      </p>
     </section>
 
-    <!-- EVENT DETAILS -->
-    <section class="event-details">
-      <div class="container">
-        <h3 class="section-title">Той салтанаты</h3>
-        
-        <div class="details-row">
-          <div class="detail-item">
-            <p><strong>5 маусым 2026 жыл</strong></p>
-            <p>сағат 19:00 - де басталады</p>
-          </div>
-          <div class="detail-item">
-            <p><strong>Той иелері:</strong></p>
-            <p>Әділбек, Гүлбану</p>
-          </div>
-        </div>
+    <div class="heart-divider" aria-hidden="true">
+      <span>♥</span>
+    </div>
 
-        <div class="event-photo">
-          <img src="assets/gallery/12.png.webp" alt="DoubleBB той кеші">
-        </div>
+    <section class="ceremony section-white reveal">
+      <h2>Той салтанаты:</h2>
+      <p class="date-line">22 тамыз 2026 жыл</p>
 
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="assets/gallery/14.png.webp" alt="Мереке сәті">
-          </div>
-          <div class="gallery-item">
-            <img src="assets/gallery/54.png.webp" alt="Қуанышты сәт">
-          </div>
-          <div class="gallery-item">
-            <img src="assets/gallery/55.png.webp" alt="Жарық сәт">
-          </div>
-          <div class="gallery-item">
-            <img src="assets/gallery/photo-1.jpg" alt="Көркем сәт">
-          </div>
+      <div class="calendar" aria-label="2026 жылдың тамыз айы">
+        <div class="calendar-days">
+          <span>ПН</span>
+          <span>ВТ</span>
+          <span>СР</span>
+          <span>ЧТ</span>
+          <span>ПТ</span>
+          <span>СБ</span>
+          <span>ВС</span>
         </div>
-
-        <div class="organizer-info">
-          <p>Ұйымдастыру</p>
-          <p class="couple-name">DoubleBB</p>
-          <p class="event-date">Қызылорда, Абылай Айдосов 42а</p>
+        <div class="calendar-grid">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+          <span>11</span>
+          <span>12</span>
+          <span>13</span>
+          <span>14</span>
+          <span>15</span>
+          <span>16</span>
+          <span>17</span>
+          <span>18</span>
+          <span>19</span>
+          <span>20</span>
+          <span>21</span>
+          <span class="selected-day">22</span>
+          <span>23</span>
+          <span>24</span>
+          <span>25</span>
+          <span>26</span>
+          <span>27</span>
+          <span>28</span>
+          <span>29</span>
+          <span>30</span>
+          <span>31</span>
         </div>
       </div>
+
+      <p class="time-line">сағат 19:00-де басталады</p>
     </section>
 
-    <!-- COUNTDOWN -->
-    <section class="countdown">
-      <div class="container">
-        <h3 class="section-title">Тойға дейін:</h3>
+    <section class="hands-photo">
+      <img src="assets/gallery/14.png.webp" alt="Қол ұстасқан жұп">
+    </section>
 
-        <div class="timer">
+    <section class="venue section-white reveal">
+      <h2>Мекен-жайымыз:</h2>
+      <p class="venue-address">Қызылорда қаласы,<br>Абылай Айдосов көшесі, 42а</p>
+      <p class="venue-name">DoubleBB</p>
+      <p class="venue-label">мейрамханасы</p>
+      <a class="map-btn" href="https://2gis.kz/kyzylorda/firm/70000001077453606" target="_blank" rel="noopener">
+        Картаны ашу
+      </a>
+    </section>
+
+    <section class="countdown-section reveal">
+      <div class="countdown-content">
+        <h2>Тойға дейін:</h2>
+        <div class="timer" aria-label="Тойға дейінгі уақыт">
           <div class="timer-unit">
-            <div class="timer-number"><span id="days">00</span></div>
-            <div class="timer-text">күн</div>
+            <span id="days">00</span>
+            <small>күн</small>
           </div>
-          <div class="timer-sep">:</div>
           <div class="timer-unit">
-            <div class="timer-number"><span id="hours">00</span></div>
-            <div class="timer-text">сағат</div>
+            <span id="hours">00</span>
+            <small>сағат</small>
           </div>
-          <div class="timer-sep">:</div>
           <div class="timer-unit">
-            <div class="timer-number"><span id="minutes">00</span></div>
-            <div class="timer-text">минут</div>
+            <span id="minutes">00</span>
+            <small>минут</small>
           </div>
-          <div class="timer-sep">:</div>
           <div class="timer-unit">
-            <div class="timer-number"><span id="seconds">00</span></div>
-            <div class="timer-text">секунд</div>
+            <span id="seconds">00</span>
+            <small>секунд</small>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VENUE -->
-    <section class="venue">
-      <div class="container">
-        <h3 class="section-title">Мекен-жайымыз</h3>
-        <p class="venue-name">DoubleBB</p>
-        <p class="venue-address">Қызылорда қаласы, Абылай Айдосов көшесі, 42а</p>
-        
-        <a href="https://2gis.kz/kyzylorda/firm/70000001077453606" target="_blank" rel="noopener" class="map-btn">
-          картаны ашу
-        </a>
-
-        <div class="venue-photo">
-          <img src="assets/gallery/photo-2.jpg" alt="DoubleBB мекені">
-        </div>
-      </div>
+    <section class="hosts section-white">
+      <h2>Той иелері:</h2>
+      <p>Тимур, Маржан</p>
     </section>
 
-    <!-- FOOTER MESSAGE -->
-    <section class="footer-message">
-      <div class="container">
-        <p>Қадірлі қонақтар, ыңғайлы көру үшін сайтты ұялы телефоныңыздан ашуыңызды сұраймыз.</p>
-      </div>
+    <section class="survey section-white">
+      <div class="corner-flower corner-flower-right"></div>
+      <h2>Сауалнама:</h2>
+      <form class="survey-form" id="surveyForm" novalidate>
+        <label class="form-field">
+          <span>Аты-жөніңіз</span>
+          <input type="text" name="guestName" placeholder="Есіміңіз" autocomplete="name" required>
+        </label>
+
+        <fieldset>
+          <legend>Тойға келесіз бе?</legend>
+          <label class="radio-item">
+            <input type="radio" name="attendance" value="Келемін" required>
+            <span>Келемін</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="attendance" value="Жұбыммен келемін">
+            <span>Жұбыммен келемін</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="attendance" value="Өкінішке орай қатыса алмаймын">
+            <span>Өкінішке орай қатыса алмаймын</span>
+          </label>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Жіберу</button>
+        <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+      </form>
     </section>
+
+    <footer class="final-message">
+      <p>Қадірлі қонақтар, қуанышымызға ортақ болыңыздар!</p>
+    </footer>
   </main>
 
   <script src="script.js"></script>

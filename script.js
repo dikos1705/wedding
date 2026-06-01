@@ -13,32 +13,56 @@ function updateCountdown() {
       ];
 
   ["days", "hours", "minutes", "seconds"].forEach((id, index) => {
-    document.getElementById(id).textContent = String(values[index]).padStart(2, "0");
+    const item = document.getElementById(id);
+    if (item) item.textContent = String(values[index]).padStart(2, "0");
   });
 }
+
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.14 });
-document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14 });
+
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
 
 const bgMusic = document.getElementById("bgMusic");
-bgMusic.volume = 0.45;
+const musicControl = document.getElementById("musicControl");
+const musicIcon = musicControl?.querySelector(".music-icon");
+const musicLabel = musicControl?.querySelector(".music-label");
+
+if (bgMusic) {
+  bgMusic.volume = 0.45;
+}
+
+function setMusicState(isPlaying) {
+  if (!musicControl) return;
+  musicControl.setAttribute("aria-pressed", String(isPlaying));
+  musicControl.classList.toggle("is-playing", isPlaying);
+  if (musicIcon) musicIcon.textContent = isPlaying ? "❚❚" : "▶";
+  if (musicLabel) musicLabel.textContent = isPlaying ? "Тоқтату" : "Музыка";
+}
 
 async function startMusic() {
+  if (!bgMusic) return;
   try {
     await bgMusic.play();
     setMusicState(true);
     removeMusicUnlockListeners();
   } catch (error) {
-    // Браузер заблокировал autoplay — ждём первого действия гостя.
+    // Браузер күштеп autoplay қосуға рұқсат бермеуі мүмкін.
   }
 }
 
@@ -48,32 +72,18 @@ function removeMusicUnlockListeners() {
   document.removeEventListener("scroll", startMusic);
 }
 
-bgMusic.addEventListener("play", () => setMusicState(true));
-bgMusic.addEventListener("pause", () => setMusicState(false));
+bgMusic?.addEventListener("play", () => setMusicState(true));
+bgMusic?.addEventListener("pause", () => setMusicState(false));
 
 window.addEventListener("load", startMusic);
-
 document.addEventListener("click", startMusic, { once: true });
 document.addEventListener("touchstart", startMusic, { once: true });
 document.addEventListener("scroll", startMusic, { once: true });
 
-const musicControl = document.getElementById("musicControl");
-const musicIcon = musicControl?.querySelector(".music-icon");
-const musicLabel = musicControl?.querySelector(".music-label");
+musicControl?.addEventListener("click", async (event) => {
+  event.stopPropagation();
+  if (!bgMusic) return;
 
-function setMusicState(isPlaying) {
-  if (!musicControl) return;
-  musicControl.setAttribute("aria-pressed", String(isPlaying));
-  musicControl.classList.toggle("is-playing", isPlaying);
-  if (musicIcon) {
-    musicIcon.textContent = isPlaying ? "❚❚" : "▶";
-  }
-  if (musicLabel) {
-    musicLabel.textContent = isPlaying ? "Тоқтату" : "Ойнату";
-  }
-}
-
-musicControl?.addEventListener("click", async () => {
   try {
     if (bgMusic.paused) {
       await bgMusic.play();
@@ -92,37 +102,20 @@ const formNote = document.getElementById("formNote");
 
 surveyForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const data = new FormData(surveyForm);
   const name = data.get("guestName")?.toString().trim();
   const attendance = data.get("attendance")?.toString();
-  const guestCount = data.get("guestCount")?.toString() || "";
-  const phone = data.get("phone")?.toString().trim() || "";
-  const note = data.get("note")?.toString().trim() || "";
 
   if (!name || !attendance) {
-    if (formNote) formNote.textContent = "Өтініш, барлық міндетті өрістерді толтырыңыз.";
+    if (formNote) formNote.textContent = "Өтініш, аты-жөніңізді жазып, жауап таңдаңыз.";
     return;
   }
 
-  const hiddenName = document.getElementById("entryName");
-  const hiddenAttendance = document.getElementById("entryAttendance");
-  const hiddenGuests = document.getElementById("entryGuests");
-  const hiddenPhone = document.getElementById("entryPhone");
-  const hiddenNote = document.getElementById("entryNote");
-  const fbzx = document.getElementById("fbzx");
-
-  if (hiddenName) hiddenName.value = name;
-  if (hiddenAttendance) hiddenAttendance.value = attendance;
-  if (hiddenGuests) hiddenGuests.value = guestCount;
-  if (hiddenPhone) hiddenPhone.value = phone;
-  if (hiddenNote) hiddenNote.value = note;
-  if (fbzx) fbzx.value = String(Date.now());
-
   if (formNote) {
-    formNote.textContent = "Жауабыңыз Google Forms-қа жіберілді. Рақмет!";
+    formNote.textContent = "Жауабыңыз қабылданды. Рақмет!";
   }
 
-  surveyForm.submit();
   surveyForm.reset();
 });
 
