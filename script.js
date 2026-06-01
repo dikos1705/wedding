@@ -35,6 +35,7 @@ bgMusic.volume = 0.45;
 async function startMusic() {
   try {
     await bgMusic.play();
+    setMusicState(true);
     removeMusicUnlockListeners();
   } catch (error) {
     // Браузер заблокировал autoplay — ждём первого действия гостя.
@@ -47,24 +48,82 @@ function removeMusicUnlockListeners() {
   document.removeEventListener("scroll", startMusic);
 }
 
+bgMusic.addEventListener("play", () => setMusicState(true));
+bgMusic.addEventListener("pause", () => setMusicState(false));
+
 window.addEventListener("load", startMusic);
 
 document.addEventListener("click", startMusic, { once: true });
 document.addEventListener("touchstart", startMusic, { once: true });
 document.addEventListener("scroll", startMusic, { once: true });
 
-const rsvpBtn = document.getElementById("rsvpBtn");
-const rsvpNote = document.getElementById("rsvpNote");
-// Google Form дайын болса, төмендегі WhatsApp сілтемесін Google Form сілтемесіне ауыстыру жеткілікті:
-// const RSVP_URL = "https://wa.me/77778018143?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%21%20%D0%9C%D0%B5%D0%BD%20%D0%A1%D0%B0%D0%BD%D0%B6%D0%B0%D1%80%20%D0%BC%D0%B5%D0%BD%20%D0%90%D0%B9%D0%B7%D0%B0%D1%82%D1%82%D1%8B%D2%A3%20%D1%82%D0%BE%D0%B9%D1%8B%D0%BD%D0%B0%20%D2%9B%D0%B0%D1%82%D1%8B%D1%81%D1%83%D1%8B%D0%BC%D0%B4%D1%8B%20%D1%80%D0%B0%D1%81%D1%82%D0%B0%D0%B9%D0%BC%D1%8B%D0%BD.%0A%0A%D0%90%D1%82%D1%8B-%D0%B6%D3%A9%D0%BD%D1%96%D0%BC%3A%20%0A%D2%9A%D0%BE%D0%BD%D0%B0%D2%9B%20%D1%81%D0%B0%D0%BD%D1%8B%3A%20%0A%D0%A2%D1%96%D0%BB%D0%B5%D0%BA/%D0%B5%D1%81%D0%BA%D0%B5%D1%80%D1%82%D1%83%3A%20";
-const RSVP_URL = "https://forms.gle/YCdG4FSxFgZLtQ8w6";
+const musicControl = document.getElementById("musicControl");
+const musicIcon = musicControl?.querySelector(".music-icon");
+const musicLabel = musicControl?.querySelector(".music-label strong");
 
+function setMusicState(isPlaying) {
+  if (!musicControl) return;
+  musicControl.setAttribute("aria-pressed", String(isPlaying));
+  musicControl.classList.toggle("is-playing", isPlaying);
+  if (musicIcon) {
+    musicIcon.textContent = isPlaying ? "❚❚" : "▶";
+  }
+  if (musicLabel) {
+    musicLabel.textContent = isPlaying ? "Тоқтату" : "Ойнату";
+  }
+}
 
-rsvpBtn.addEventListener("click", () => {
-  if (RSVP_URL) {
-    window.open(RSVP_URL, "_blank", "noopener,noreferrer");
+musicControl?.addEventListener("click", async () => {
+  try {
+    if (bgMusic.paused) {
+      await bgMusic.play();
+      setMusicState(true);
+    } else {
+      bgMusic.pause();
+      setMusicState(false);
+    }
+  } catch (error) {
+    console.warn("Музыканы ойнату мүмкін болмай тұр:", error);
+  }
+});
+
+const surveyForm = document.getElementById("surveyForm");
+const formNote = document.getElementById("formNote");
+
+surveyForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = new FormData(surveyForm);
+  const name = data.get("guestName")?.toString().trim();
+  const attendance = data.get("attendance")?.toString();
+  const guestCount = data.get("guestCount")?.toString() || "";
+  const phone = data.get("phone")?.toString().trim() || "";
+  const note = data.get("note")?.toString().trim() || "";
+
+  if (!name || !attendance) {
+    if (formNote) formNote.textContent = "Өтініш, барлық міндетті өрістерді толтырыңыз.";
     return;
   }
-  rsvpNote.textContent = "Сілтеме ашылмады. Нөмір: +7 700 590 5555";
-  setTimeout(() => { rsvpNote.textContent = ""; }, 4200);
+
+  const hiddenName = document.getElementById("entryName");
+  const hiddenAttendance = document.getElementById("entryAttendance");
+  const hiddenGuests = document.getElementById("entryGuests");
+  const hiddenPhone = document.getElementById("entryPhone");
+  const hiddenNote = document.getElementById("entryNote");
+  const fbzx = document.getElementById("fbzx");
+
+  if (hiddenName) hiddenName.value = name;
+  if (hiddenAttendance) hiddenAttendance.value = attendance;
+  if (hiddenGuests) hiddenGuests.value = guestCount;
+  if (hiddenPhone) hiddenPhone.value = phone;
+  if (hiddenNote) hiddenNote.value = note;
+  if (fbzx) fbzx.value = String(Date.now());
+
+  if (formNote) {
+    formNote.textContent = "Жауабыңыз Google Forms-қа жіберілді. Рақмет!";
+  }
+
+  surveyForm.submit();
+  surveyForm.reset();
 });
+
+setMusicState(false);

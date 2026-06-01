@@ -32,6 +32,10 @@
         <p class="hero-time">сағат 19:00</p>
       </div>
       <a class="scroll-arrow" href="#invitation" aria-label="Төмен түсу">⌄</a>
+      <button class="music-control" id="musicControl" type="button" aria-pressed="false">
+        <span class="music-icon">▶</span>
+        <span class="music-label"><strong>Музыка</strong><small>Ойнату / тоқтату</small></span>
+      </button>
     </section>
 
     <section class="invitation section" id="invitation">
@@ -47,6 +51,56 @@
       </div>
       <div class="photo-card reveal">
         <img src="assets/bouquet.jpg" alt="Қалыңдықтың гүл шоғы">
+      </div>
+    </section>
+
+    <section class="survey section" id="survey">
+      <div class="container reveal">
+        <p class="eyebrow">Сауалнама</p>
+        <h2>Тойға келетіндеріңізді хабарлаңыз</h2>
+        <div class="ornament ornament--small"><span></span><i>♡</i><span></span></div>
+        <form class="survey__form" id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdBBvj2R1w2zf6xhmqTmRFFW37lEXne-JY3kcBAWRV18L1wSg/formResponse" method="POST" target="hidden_iframe">
+          <input type="hidden" name="entry.1115765674" id="entryName">
+          <input type="hidden" name="entry.2018536969" id="entryAttendance">
+          <input type="hidden" name="entry.483633392" id="entryGuests">
+          <input type="hidden" name="entry.69118894" id="entryPhone">
+          <input type="hidden" name="entry.1380502630" id="entryNote">
+          <input type="hidden" name="fbzx" id="fbzx" value="0">
+
+          <label class="form-field">
+            <span>Аты-жөніңіз</span>
+            <input type="text" name="guestName" placeholder="Есіміңіз" required>
+          </label>
+          <div class="form-field">
+            <span>Тойға келесіз бе?</span>
+            <div class="radio-group">
+              <label><input type="radio" name="attendance" value="Иә, қуана қатысамын" required> Келемін</label>
+              <label><input type="radio" name="attendance" value="Жұбыммен келемін"> Жұбыммен келемін</label>
+              <label><input type="radio" name="attendance" value="Өкінішке қарай, қатыса алмаймын"> Өкінішке қарай, қатыса алмаймын</label>
+            </div>
+          </div>
+          <div class="form-field">
+            <span>Қанша қонақ келесіз?</span>
+            <div class="radio-group">
+              <label><input type="radio" name="guestCount" value="Тек өзім"> Тек өзім</label>
+              <label><input type="radio" name="guestCount" value="2 адам"> 2 адам</label>
+              <label><input type="radio" name="guestCount" value="3 адам"> 3 адам</label>
+              <label><input type="radio" name="guestCount" value="4 адам"> 4 адам</label>
+              <label><input type="radio" name="guestCount" value="Басқа"> Басқа</label>
+            </div>
+          </div>
+          <label class="form-field">
+            <span>Байланыс телефоныңыз</span>
+            <input type="text" name="phone" placeholder="Телефон нөмірі">
+          </label>
+          <label class="form-field">
+            <span>Той иелеріне тілегіңіз</span>
+            <textarea name="note" placeholder="Хабарламаңызды жазыңыз"></textarea>
+          </label>
+          <button class="button button--filled" type="submit">Жіберу</button>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
       </div>
     </section>
 
@@ -109,6 +163,8 @@
           <figure class="gallery__item reveal"><img src="assets/gallery/photo-1.jpg" alt="Тойдың нәзік гүлдері"></figure>
           <figure class="gallery__item reveal"><img src="assets/gallery/photo-2.jpg" alt="Той аркасы"></figure>
           <figure class="gallery__item reveal"><img src="assets/gallery/photo-3.jpg" alt="Мерекелік безендіру"></figure>
+          <figure class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Жұптың той сәті"></figure>
+          <figure class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1498579809087-ef1e558fd1c1?auto=format&fit=crop&w=900&q=80" alt="Ақ гүлдер мен жарық"></figure>
         </div>
       </div>
     </section>
@@ -129,11 +185,9 @@
 
     <section class="rsvp section" id="rsvp">
       <div class="container reveal">
-        <p class="eyebrow">Қатысуыңызды растайсыз ба?</p>
-        <h2>Біз сіздерді асыға күтеміз</h2>
-        <p>Төмендегі батырма арқылы формада қатысатыныңызды хабарлаңыз.</p>
-        <button class="button button--filled" id="rsvpBtn" type="button">Google Forms арқылы растау</button>
-        <p class="rsvp-note" id="rsvpNote" role="status"></p>
+        <p class="eyebrow">Қадірлі қонақтар</p>
+        <h2>Сайтты ұялы телефоныңыздан ашсаңыз ыңғайлы болады</h2>
+        <p>Тойға дейінгі барлық ақпарат пен жаңалықтар осы бетте сақталады.</p>
       </div>
     </section>
 
